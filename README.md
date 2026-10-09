@@ -1,43 +1,42 @@
-# <img src="https://raw.githubusercontent.com/ice-exe/Spaller/refs/heads/main/app/icon.ico" alt="Spaller Logo" width="50" height="50" align="left"> Spaller
+# <img src="app/icon.ico" alt="Spaller Logo" width="50" height="50" align="left"> Spaller
 **Software Package Installer**
 
 <br clear="left"/>
 
 > A modern, elegant software package installer for Windows that simplifies bulk application installation with a beautiful dark-themed interface and intelligent installation methods.
 
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/ice-exe/Spaller)
-[![Python](https://img.shields.io/badge/python-3.7%2B-blue.svg)](https://python.org)
+[![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](https://github.com/ice-exe/Spaller)
+![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)
 
 ---
 
 ## 🌟 Features
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/ice-exe/Spaller/refs/heads/main/images/App%20UI.png" alt="Spaller Interface" width="800" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+  <img src="images/App%20UI.png" alt="Spaller Interface" width="800" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
 </div>
 
 ### ✨ **Modern Interface**
 - **Dark Theme**: Eye-friendly GitHub-inspired dark interface
 - **Custom Title Bar**: Frameless window with custom controls
-- **Animated Elements**: Smooth transitions and pulse animations
-- **Responsive Design**: Adapts to different screen sizes
+- **Native Window Behaviour**: Drag to move, Windows snap, taskbar minimize
 
 ### 🎯 **Smart Installation**
-- **Dual Installation Methods**: Primary Chocolatey integration with direct download fallback
-- **Bulk Install**: Select and install multiple applications simultaneously
-- **Progress Tracking**: Real-time installation progress with detailed status
+- **Chocolatey Powered**: Clean, unattended installs from the Chocolatey community repository
+- **Chocolatey Setup**: Offers to install Chocolatey for you if it's missing
+- **Bulk Install**: Select and install multiple applications in one go
+- **Progress Tracking**: Real-time progress, then a summary of what installed and what failed
+- **Safe Cancel**: Stops after the current app, so nothing is left half-installed
 - **Category Organization**: Applications organized by type (Browsers, Gaming, Development, etc.)
-- **Search Functionality**: Quick search across all applications
+- **Search Functionality**: Search names, descriptions and package ids across all categories
 - **Size Estimation**: View estimated download sizes before installation
-- **Automatic Fallback**: Seamlessly switches to direct downloads if Chocolatey fails
+- **Always Up to Date**: The app list is fetched live from this repository, with a bundled copy for offline use
 
 ### 🔧 **User-Friendly Controls**
-- **Custom Download Path**: Choose where to save installers (direct download mode)
 - **Selective Installation**: Pick exactly what you need
 - **One-Click Actions**: Select all, deselect all, or select by category
-- **Detailed App Info**: View publisher, version, and license information
+- **App Info**: See each app's Chocolatey package and a link to its package page
 
 ---
 
@@ -45,28 +44,35 @@
 
 ### Prerequisites
 - **Windows 10/11** (64-bit recommended)
-- **Python 3.7+** (if running from source)
+- **Python 3.9+** (if running from source)
 - **Internet Connection** (for downloading applications)
-- **Administrator Privileges** (recommended for Chocolatey installations)
+- **Administrator Privileges** (Spaller asks for them on launch)
 
 ### 📥 Installation
 
 #### Option 1: Download Executable (Recommended)
-1. Go to [Releases](https://github.com/ice-exe/Spaller/releases)
-2. Download the latest `Spaller.exe`
-3. Run the executable - no installation required!
+1. Go to [Releases](../../releases/latest)
+2. Download `Spaller.exe`
+3. Run it and accept the administrator prompt - no installation required!
+
+Each release also has `Spaller.exe.sha256` and a [build provenance attestation](https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations), so you can check the exe was built by this repository's workflow:
+```bash
+gh attestation verify Spaller.exe --repo <owner>/Spaller
+```
 
 #### Option 2: Run from Source
 ```bash
-# Clone the repository
-git clone https://github.com/ice-exe/Spaller.git
+# Clone the repository (use the URL from the green "Code" button), then:
 cd Spaller
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the application
-python Spaller.py
+# Run the application (asks for administrator rights)
+python app/Spaller.py
+
+# Run the tests
+python -m unittest discover -s tests
 ```
 
 ---
@@ -74,7 +80,7 @@ python Spaller.py
 ## 🎮 How to Use
 
 ### 1. **Launch Application**
-Run Spaller and wait for the loading screen to complete while application data loads.
+Run Spaller and accept the administrator prompt. If Chocolatey isn't installed, Spaller offers to install it.
 
 ### 2. **Browse Categories**
 - Navigate through different software categories in the left sidebar
@@ -86,15 +92,10 @@ Run Spaller and wait for the loading screen to complete while application data l
 - Use "Select All" for bulk selection
 - View selected count and estimated size in the bottom panel
 
-### 4. **Configure Installation**
-- Choose your download path using the "Choose Path" button (for direct downloads)
-- Default location: `~/Downloads/Spaller`
-
-### 5. **Start Installation**
-- Click the "Start" button to begin installation
-- Spaller first attempts installation via Chocolatey for faster, cleaner installs
-- If Chocolatey fails or isn't available, automatically falls back to direct downloads
-- Monitor progress in real-time with installation method indicators
+### 4. **Install**
+- Click "Install" to install the selected apps one by one via Chocolatey
+- Monitor progress in real time; "Cancel" stops after the current app
+- When done, a summary lists anything that failed. Installed apps are deselected, so clicking "Install" again retries only the failures
 
 ---
 
@@ -109,7 +110,7 @@ Run Spaller and wait for the loading screen to complete while application data l
 ### 🎮 **Gaming Platforms**
 - Steam
 - Epic Games Launcher
-- Battle.net
+- GOG Galaxy
 - And more...
 
 ### 💻 **Development Tools**
@@ -135,70 +136,65 @@ Run Spaller and wait for the loading screen to complete while application data l
 ## ⚙️ Technical Details
 
 ### Built With
-- **Python 3.7+** - Core application logic
+- **Python 3.9+** - Core application logic
 - **PySide6** - Modern Qt-based GUI framework
-- **Requests** - HTTP library for downloading
-- **Threading** - Multi-threaded operations for smooth UI
-- **Chocolatey Integration** - Package manager for Windows
+- **Chocolatey** - Package manager for Windows
+- **PyInstaller** - Builds the single-file `Spaller.exe`
+- **GitHub Actions** - Tests, builds and releases
 
 ### Architecture
 ```
 Spaller/
-├── Spaller.py          # Main application file
-├── icon.ico            # Application icon
-├── requirements.txt    # Python dependencies
-└── resources/
-    └── apps_data.json  # Application database
+├── app/
+│   ├── Spaller.py            # Main application file
+│   ├── packages.json         # Application catalog
+│   └── icon.ico              # Application icon
+├── tests/                    # Unit and UI smoke tests
+├── requirements.txt          # Python dependencies
+├── resources/                # Old catalog, only read by v2.0/v2.1
+└── .github/workflows/build.yml   # Test, build and release pipeline
 ```
 
 ### Key Components
-- **LoadingScreen**: Animated splash screen with progress bar
 - **CustomTitleBar**: Frameless window controls
 - **ModernCheckBox**: Custom checkbox components with app info
-- **InstallationThread**: Background installation handler with dual methods
-- **ChocolateyManager**: Chocolatey package management integration
-- **DataLoader**: Async application data fetching
+- **CatalogLoader**: Fetches the latest app list in the background
+- **ChocolateySetupThread**: Installs Chocolatey with the official script
+- **InstallationThread**: Runs `choco install` for each selected app
 
-### Installation Flow (v2.1.0)
-1. **Chocolatey Check**: Verify if Chocolatey is installed and accessible
-2. **Primary Installation**: Attempt installation via Chocolatey packages
-3. **Fallback Mechanism**: Switch to direct download method if Chocolatey fails
-4. **Progress Reporting**: Real-time status updates for both methods
+### Installation Flow
+1. **Chocolatey Check**: Find `choco.exe`; offer to install Chocolatey if missing
+2. **Install**: Run `choco install <package> -y` for each selected app, without a shell
+3. **Summary**: Report installed / failed apps, and whether Windows needs a restart
 
 ---
 
 ## 🛠️ Configuration
 
-### Custom Application Data
-Applications are loaded from a JSON configuration file hosted on GitHub. The structure now includes Chocolatey package names:
+### Application Catalog
+Applications are listed in [`app/packages.json`](app/packages.json):
 
 ```json
 {
   "Category Name": {
     "App Name": {
+      "package": "chocolatey-package-id",
       "description": "App description",
-      "url": "download_url",
-      "installer": "filename.exe",
       "size": 50,
-      "icon": "📦",
-      "chocolatey_package": "package-name"
+      "icon": "📦"
     }
   }
 }
 ```
 
+Released builds download the latest `app/packages.json` from the repository and branch they were built from (filled in by the release workflow, never hardcoded), so a catalog change reaches existing users without a new release. If the download fails or the file is invalid, the copy bundled in the exe is used.
+
 ### Adding New Applications
-To add new applications, modify the `apps_data.json` file in the repository and submit a pull request. Include both direct download URLs and Chocolatey package names when available.
+Add an entry to `app/packages.json` and submit a pull request. `package` must be the package id from [community.chocolatey.org](https://community.chocolatey.org/packages) (the part after `/packages/`).
 
 ---
 
 ## 🍫 Chocolatey Integration
-
-### What's New in v2.1.0
-- **Primary Method**: Chocolatey packages are now the preferred installation method
-- **Automatic Detection**: Spaller automatically detects if Chocolatey is available
-- **Seamless Fallback**: Falls back to direct downloads without user intervention
-- **Better Performance**: Chocolatey installations are typically faster and more reliable
 
 ### Benefits of Chocolatey Integration
 - **Cleaner Installations**: Proper package management and dependency handling
@@ -208,9 +204,10 @@ To add new applications, modify the `apps_data.json` file in the repository and 
 - **Faster Installation**: Direct package installation without manual file handling
 
 ### Chocolatey Requirements
-- **Optional**: Spaller works perfectly without Chocolatey installed
-- **Administrator Rights**: Some Chocolatey operations may require elevated privileges
+- **Required**: If Chocolatey isn't installed, Spaller offers to install it with the official script from chocolatey.org
+- **Administrator Rights**: Required; Spaller requests them on launch
 - **Internet Connection**: Required for package downloads
+- **Logs**: Failed installs are detailed in `C:\ProgramData\chocolatey\logs\chocolatey.log`
 
 ---
 
@@ -219,7 +216,7 @@ To add new applications, modify the `apps_data.json` file in the repository and 
 We welcome contributions! Here's how you can help:
 
 ### 🐛 **Bug Reports**
-- Use the [Issues](https://github.com/ice-exe/Spaller/issues) tab
+- Use the [Issues](../../issues) tab
 - Include detailed steps to reproduce
 - Provide system information and installation method used
 
@@ -232,12 +229,12 @@ We welcome contributions! Here's how you can help:
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature-name`
 3. Make your changes
-4. Test thoroughly (both Chocolatey and direct download methods)
-5. Submit a pull request
+4. Run the tests: `python -m unittest discover -s tests`
+5. Submit a pull request (GitHub Actions tests it and builds the exe)
 
 ### 📱 **Application Requests**
 - Request new applications via Issues
-- Provide both download links and Chocolatey package names
+- Include the Chocolatey package name
 - Ensure applications are freely available
 
 ---
@@ -245,13 +242,12 @@ We welcome contributions! Here's how you can help:
 ## 📞 Support & Contact
 
 ### 🆘 **Getting Help**
-- **Issues**: [GitHub Issues](https://github.com/ice-exe/Spaller/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/ice-exe/Spaller/discussions)
+- **Issues**: [GitHub Issues](../../issues)
+- **Discussions**: [GitHub Discussions](../../discussions)
 - **Email**: [Contact Form](https://abdvlrqhman.com/contact)
 
 ### 🌐 **Stay Connected**
 - **Website**: [abdvlrqhman.com](https://abdvlrqhman.com)
-- **GitHub**: [@ice-exe](https://github.com/ice-exe)
 
 ---
 
@@ -261,7 +257,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ### Third-Party Acknowledgments
 - **PySide6**: Qt for Python GUI framework
-- **Requests**: HTTP library for Python
 - **Chocolatey**: Package manager for Windows
 - Application installers are property of their respective owners
 
@@ -269,14 +264,14 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 🎯 Roadmap
 
-### v2.2.0 (Upcoming)
+### Next
 - [ ] Update checking and auto-updater
 - [ ] Installation history and rollback
 - [ ] Custom application categories
 - [ ] Portable app support
 - [ ] Chocolatey package search and discovery
 
-### v2.3.0 (Future)
+### Future
 - [ ] Plugin system for custom installers
 - [ ] Installation scheduling
 - [ ] Multi-language support
@@ -284,17 +279,31 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## 📊 Statistics
+## 🚢 Releasing
 
-![GitHub stars](https://img.shields.io/github/stars/ice-exe/Spaller?style=social)
-![GitHub forks](https://img.shields.io/github/forks/ice-exe/Spaller?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/ice-exe/Spaller?style=social)
+Releases are fully automated by [`.github/workflows/build.yml`](.github/workflows/build.yml):
+
+```bash
+git tag v2.2.0
+git push origin v2.2.0
+```
+
+The workflow runs the tests, builds `Spaller.exe` on Windows, and publishes a GitHub release with the exe, its SHA-256 checksum and auto-generated release notes. The version shown in the app comes from the tag. Every push and pull request also builds the exe as a downloadable workflow artifact.
 
 ---
 
 ## 📈 Version History
 
-### v2.1.0 (Current)
+### v2.2.0
+- ✅ Automated tested builds and releases with GitHub Actions
+- ✅ App list fetched live from the repository, with an offline fallback
+- ✅ Fixed installs failing right after a fresh Chocolatey install
+- ✅ Fixed console windows flashing during installs
+- ✅ Installation summary with failed apps; cancel stops safely after the current app
+- ✅ Removed dead catalog entries; removed the broken direct-download fallback
+- ✅ Package ids are validated and run without a shell
+
+### v2.1.0
 - ✅ Chocolatey integration as primary installation method
 - ✅ Automatic fallback to direct downloads
 - ✅ Enhanced installation progress tracking

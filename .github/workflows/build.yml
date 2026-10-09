@@ -1,0 +1,89 @@
+name: Build
+
+# Every push and PR is tested and builds Spaller.exe as a workflow artifact.
+# Pushing a tag like v2.2.0 also publishes a GitHub release with the exe attached.
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt pyinstaller==6.22.3
+
+      - name: Test
+        run: python -m unittest discover -s tests -v
+
+      # Repo and branch come from GitHub, so the app's links and live catalog
+      # follow the repo if it is renamed or moved; nothing is hardcoded.
+      - name: Write build info
+        shell: bash
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then VERSION="$GITHUB_REF_NAME"; else VERSION="dev-${GITHUB_SHA::7}"; fi
+          printf 'VERSION = "%s"\nREPO = "%s"\nBRANCH = "%s"\n' "$VERSION" "$GITHUB_REPOSITORY" "$DEFAULT_BRANCH" > app/_build.py
+          cat app/_build.py
+
+      - name: Build exe
+        run: >-
+          pyinstaller --noconfirm --clean --onefile --windowed --uac-admin
+          --name Spaller --icon app/icon.ico
+          --add-data "app/icon.ico:." --add-data "app/packages.json:."
+          app/Spaller.py
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: Spaller
+          path: dist/Spaller.exe
+          if-no-files-found: error
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: Spaller
+
+      - name: Checksum
+        run: sha256sum Spaller.exe > Spaller.exe.sha256
+
+      # Lets users verify the exe was built by this workflow: gh attestation verify Spaller.exe -R <owner>/<repo>
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: Spaller.exe
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "$GITHUB_REF_NAME" Spaller.exe Spaller.exe.sha256
+          --repo "$GITHUB_REPOSITORY" --title "Spaller $GITHUB_REF_NAME" --generate-notes

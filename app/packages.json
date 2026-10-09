@@ -1,0 +1,412 @@
+{
+  "Browsers": {
+    "Google Chrome": {
+      "package": "googlechrome",
+      "description": "Fast, secure web browser by Google",
+      "size": 85,
+      "icon": "🌐"
+    },
+    "Mozilla Firefox": {
+      "package": "firefox",
+      "description": "Open-source web browser with privacy focus",
+      "size": 92,
+      "icon": "🦊"
+    },
+    "Microsoft Edge": {
+      "package": "microsoft-edge",
+      "description": "Microsoft's modern web browser",
+      "size": 110,
+      "icon": "💠"
+    },
+    "Brave": {
+      "package": "brave",
+      "description": "Privacy-focused browser with ad-blocking",
+      "size": 78,
+      "icon": "🛡️"
+    },
+    "Opera": {
+      "package": "opera",
+      "description": "Feature-rich browser with built-in VPN",
+      "size": 95,
+      "icon": "🎭"
+    },
+    "Vivaldi": {
+      "package": "vivaldi",
+      "description": "Highly customizable browser for power users",
+      "size": 88,
+      "icon": "🎨"
+    }
+  },
+  "Gaming": {
+    "Steam": {
+      "package": "steam",
+      "description": "Digital distribution platform for games",
+      "size": 156,
+      "icon": "🎮"
+    },
+    "Epic Games Launcher": {
+      "package": "epicgameslauncher",
+      "description": "Launcher for Fortnite and other Epic titles",
+      "size": 160,
+      "icon": "🕹️"
+    },
+    "GOG Galaxy": {
+      "package": "goggalaxy",
+      "description": "DRM-free game launcher from GOG",
+      "size": 120,
+      "icon": "🚀"
+    },
+    "Ubisoft Connect": {
+      "package": "ubisoft-connect",
+      "description": "Ubisoft's game launcher and store",
+      "size": 100,
+      "icon": "🎯"
+    },
+    "EA App": {
+      "package": "ea-app",
+      "description": "EA's gaming platform and launcher (replaces Origin)",
+      "size": 85,
+      "icon": "🎲"
+    }
+  },
+  "Productivity": {
+    "LibreOffice": {
+      "package": "libreoffice-fresh",
+      "description": "Free and open-source office suite",
+      "size": 300,
+      "icon": "📄"
+    },
+    "Microsoft Office": {
+      "package": "office365business",
+      "description": "Premium office suite from Microsoft",
+      "size": 400,
+      "icon": "📊"
+    },
+    "Notion": {
+      "package": "notion",
+      "description": "All-in-one workspace for notes and collaboration",
+      "size": 180,
+      "icon": "📝"
+    },
+    "Obsidian": {
+      "package": "obsidian",
+      "description": "Knowledge management and note-taking app",
+      "size": 120,
+      "icon": "🧠"
+    },
+    "Evernote": {
+      "package": "evernote",
+      "description": "Note-taking and organization app",
+      "size": 200,
+      "icon": "🐘"
+    },
+    "OneNote": {
+      "package": "onenote",
+      "description": "Microsoft's digital note-taking app",
+      "size": 150,
+      "icon": "📓"
+    }
+  },
+  "Development": {
+    "Visual Studio Code": {
+      "package": "vscode",
+      "description": "Lightweight code editor with extensions",
+      "size": 85,
+      "icon": "💻"
+    },
+    "Notepad++": {
+      "package": "notepadplusplus",
+      "description": "Advanced text editor for developers",
+      "size": 10,
+      "icon": "🗒️"
+    },
+    "Git": {
+      "package": "git",
+      "description": "Version control system for developers",
+      "size": 50,
+      "icon": "🌿"
+    },
+    "Node.js": {
+      "package": "nodejs",
+      "description": "JavaScript runtime for server-side development",
+      "size": 25,
+      "icon": "🟢"
+    },
+    "Python": {
+      "package": "python",
+      "description": "Popular programming language interpreter",
+      "size": 30,
+      "icon": "🐍"
+    },
+    "IntelliJ IDEA": {
+      "package": "intellijidea-community",
+      "description": "Powerful IDE for Java development",
+      "size": 800,
+      "icon": "🧠"
+    },
+    "Docker Desktop": {
+      "package": "docker-desktop",
+      "description": "Containerization platform for developers",
+      "size": 500,
+      "icon": "🐳"
+    },
+    "Postman": {
+      "package": "postman",
+      "description": "API development and testing tool",
+      "size": 150,
+      "icon": "📮"
+    }
+  },
+  "Media": {
+    "VLC Media Player": {
+      "package": "vlc",
+      "description": "Versatile media player for all formats",
+      "size": 40,
+      "icon": "🎬"
+    },
+    "OBS Studio": {
+      "package": "obs-studio",
+      "description": "Free streaming and recording software",
+      "size": 120,
+      "icon": "📹"
+    },
+    "Audacity": {
+      "package": "audacity",
+      "description": "Free audio editing software",
+      "size": 35,
+      "icon": "🎵"
+    },
+    "GIMP": {
+      "package": "gimp",
+      "description": "Free image editing software",
+      "size": 280,
+      "icon": "🎨"
+    },
+    "Spotify": {
+      "package": "spotify",
+      "description": "Music streaming service",
+      "size": 95,
+      "icon": "🎧"
+    },
+    "iTunes": {
+      "package": "itunes",
+      "description": "Apple's media player and library",
+      "size": 270,
+      "icon": "🍎"
+    },
+    "Krita": {
+      "package": "krita",
+      "description": "Free digital painting software",
+      "size": 180,
+      "icon": "🖌️"
+    },
+    "HandBrake": {
+      "package": "handbrake",
+      "description": "Video transcoder and converter",
+      "size": 15,
+      "icon": "🎞️"
+    }
+  },
+  "Communication": {
+    "Discord": {
+      "package": "discord",
+      "description": "Voice and text chat for communities",
+      "size": 85,
+      "icon": "💬"
+    },
+    "Zoom": {
+      "package": "zoom",
+      "description": "Video conferencing and meetings",
+      "size": 45,
+      "icon": "📹"
+    },
+    "Microsoft Teams": {
+      "package": "microsoft-teams-new-bootstrapper",
+      "description": "Collaboration and communication platform",
+      "size": 120,
+      "icon": "👥"
+    },
+    "Slack": {
+      "package": "slack",
+      "description": "Workplace communication tool",
+      "size": 110,
+      "icon": "💼"
+    },
+    "Telegram": {
+      "package": "telegram",
+      "description": "Fast and secure messaging app",
+      "size": 35,
+      "icon": "✈️"
+    }
+  },
+  "Utilities": {
+    "7-Zip": {
+      "package": "7zip",
+      "description": "High-compression file archiver",
+      "size": 2,
+      "icon": "🗜️"
+    },
+    "WinRAR": {
+      "package": "winrar",
+      "description": "File archiver utility for Windows",
+      "size": 3,
+      "icon": "📦"
+    },
+    "CCleaner": {
+      "package": "ccleaner",
+      "description": "System cleaning and optimization tool",
+      "size": 25,
+      "icon": "🧹"
+    },
+    "Everything": {
+      "package": "everything",
+      "description": "Instant file and folder search utility",
+      "size": 3,
+      "icon": "🔍"
+    },
+    "PowerToys": {
+      "package": "powertoys",
+      "description": "Microsoft utilities for power users",
+      "size": 250,
+      "icon": "⚡"
+    },
+    "TreeSize": {
+      "package": "treesizefree",
+      "description": "Disk space analyzer and cleaner",
+      "size": 8,
+      "icon": "🌳"
+    },
+    "Greenshot": {
+      "package": "greenshot",
+      "description": "Screenshot tool with annotation features",
+      "size": 2,
+      "icon": "📸"
+    },
+    "System Informer": {
+      "package": "systeminformer",
+      "description": "Advanced process and system monitor (successor to Process Hacker)",
+      "size": 5,
+      "icon": "⚙️"
+    }
+  },
+  "Security": {
+    "Malwarebytes": {
+      "package": "malwarebytes",
+      "description": "Anti-malware and spyware protection",
+      "size": 90,
+      "icon": "🧬"
+    },
+    "ProtonVPN": {
+      "package": "protonvpn",
+      "description": "Secure and free VPN service",
+      "size": 21,
+      "icon": "🔒"
+    },
+    "NordVPN": {
+      "package": "nordvpn",
+      "description": "Premium VPN service with global servers",
+      "size": 45,
+      "icon": "🔐"
+    },
+    "Bitwarden": {
+      "package": "bitwarden",
+      "description": "Open-source password manager",
+      "size": 85,
+      "icon": "🔑"
+    },
+    "VeraCrypt": {
+      "package": "veracrypt",
+      "description": "Disk encryption software",
+      "size": 25,
+      "icon": "🔐"
+    }
+  },
+  "File Management": {
+    "FileZilla": {
+      "package": "filezilla",
+      "description": "Free FTP client for file transfers",
+      "size": 12,
+      "icon": "📁"
+    },
+    "WinSCP": {
+      "package": "winscp",
+      "description": "SFTP and FTP client for Windows",
+      "size": 10,
+      "icon": "🔄"
+    },
+    "SumatraPDF": {
+      "package": "sumatrapdf",
+      "description": "Lightweight PDF and ebook reader",
+      "size": 6,
+      "icon": "📘"
+    },
+    "Adobe Acrobat Reader": {
+      "package": "adobereader",
+      "description": "PDF reader and editor",
+      "size": 200,
+      "icon": "📄"
+    },
+    "Dropbox": {
+      "package": "dropbox",
+      "description": "Cloud storage and file synchronization",
+      "size": 140,
+      "icon": "☁️"
+    },
+    "Google Drive": {
+      "package": "googledrive",
+      "description": "Google's cloud storage service",
+      "size": 80,
+      "icon": "💾"
+    },
+    "OneDrive": {
+      "package": "onedrive",
+      "description": "Microsoft's cloud storage service",
+      "size": 100,
+      "icon": "☁️"
+    }
+  },
+  "System Tools": {
+    "CPU-Z": {
+      "package": "cpu-z",
+      "description": "System information and hardware monitoring",
+      "size": 2,
+      "icon": "🖥️"
+    },
+    "GPU-Z": {
+      "package": "gpu-z",
+      "description": "Graphics card information tool",
+      "size": 8,
+      "icon": "🎮"
+    },
+    "HWiNFO": {
+      "package": "hwinfo",
+      "description": "Comprehensive hardware information tool",
+      "size": 5,
+      "icon": "🔧"
+    },
+    "Speccy": {
+      "package": "speccy",
+      "description": "System information tool by Piriform",
+      "size": 15,
+      "icon": "💻"
+    },
+    "MSI Afterburner": {
+      "package": "msiafterburner",
+      "description": "Graphics card overclocking utility",
+      "size": 40,
+      "icon": "🚀"
+    },
+    "Rufus": {
+      "package": "rufus",
+      "description": "USB bootable drive creation tool",
+      "size": 1,
+      "icon": "💿"
+    },
+    "CrystalDiskInfo": {
+      "package": "crystaldiskinfo",
+      "description": "Hard drive health monitoring tool",
+      "size": 8,
+      "icon": "💽"
+    }
+  }
+}
